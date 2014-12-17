@@ -86,9 +86,10 @@ public class RecordFile {
     * in the current record.
     * @param fldname the name of the field
     * @param val the new value for the field
+ * @param type 
     */
-   public void setInt(String fldname, int val) {
-      rp.setInt(fldname, val);
+   public void setInt(String fldname, int val, String type) {
+      rp.setInt(fldname, val , type);
    }
    
    /**
@@ -96,9 +97,10 @@ public class RecordFile {
     * in the current record.
     * @param fldname the name of the field
     * @param val the new value for the field
+ * @param type 
     */
-   public void setString(String fldname, String val) {
-      rp.setString(fldname, val);
+   public void setString(String fldname, String val, String type) {
+      rp.setString(fldname, val ,type);
    }
    
    /**

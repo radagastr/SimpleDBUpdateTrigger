@@ -76,10 +76,11 @@ public class RecordPage {
     * of the current record.
     * @param fldname the name of the field
     * @param val the integer value stored in that field
+ * @param type 
     */
-   public void setInt(String fldname, int val) {
+   public void setInt(String fldname, int val, String type) {
       int position = fieldpos(fldname);
-      tx.setInt(blk, position, val);
+      tx.setInt(blk, position, val ,type);
    }
    
    /**
@@ -87,10 +88,11 @@ public class RecordPage {
     * of the current record.
     * @param fldname the name of the field
     * @param val the string value stored in that field
+ * @param type 
     */
-   public void setString(String fldname, String val) {
+   public void setString(String fldname, String val, String type) {
       int position = fieldpos(fldname);
-      tx.setString(blk, position, val);
+      tx.setString(blk, position, val ,type);
    }
    
    /**
@@ -101,7 +103,7 @@ public class RecordPage {
     */
    public void delete() {
       int position = currentpos();
-      tx.setInt(blk, position, EMPTY);
+      tx.setInt(blk, position, EMPTY , "delete");
    }
    
    /**
@@ -114,7 +116,7 @@ public class RecordPage {
       boolean found = searchFor(EMPTY);
       if (found) {
          int position = currentpos();
-         tx.setInt(blk, position, INUSE);
+         tx.setInt(blk, position, INUSE , "insert");
       }
       return found;
    }

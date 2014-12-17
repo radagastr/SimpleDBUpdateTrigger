@@ -12,6 +12,7 @@ import simpledb.query.*;
  * @author sciore
  */
 public class BasicUpdatePlanner implements UpdatePlanner {
+	String type;
   
    public int executeDelete(DeleteData data, Transaction tx) {
       Plan p = new TablePlan(data.tableName(), tx);
@@ -27,6 +28,7 @@ public class BasicUpdatePlanner implements UpdatePlanner {
    }
    
    public int executeModify(ModifyData data, Transaction tx) {
+	  type = "modify" ;
       Plan p = new TablePlan(data.tableName(), tx);
       p = new SelectPlan(p, data.pred());
       UpdateScan us = (UpdateScan) p.open();
@@ -34,7 +36,7 @@ public class BasicUpdatePlanner implements UpdatePlanner {
       while(us.next()) {
          Constant val = data.newValue().evaluate(us);
          System.out.println(us+"AA");
-         us.setVal(data.targetField(), val);
+         us.setVal(data.targetField(), val , type);
          count++;
       }
       us.close();
@@ -42,13 +44,14 @@ public class BasicUpdatePlanner implements UpdatePlanner {
    }
    
    public int executeInsert(InsertData data, Transaction tx) {
+	  type = "insert";
       Plan p = new TablePlan(data.tableName(), tx);
       UpdateScan us = (UpdateScan) p.open();
       us.insert();
       Iterator<Constant> iter = data.vals().iterator();
       for (String fldname : data.fields()) {
          Constant val = iter.next();
-         us.setVal(fldname, val);
+         us.setVal(fldname, val ,type);
       }
       us.close();
       return 1;

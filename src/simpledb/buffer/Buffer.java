@@ -73,12 +73,13 @@ public class Buffer {
     * @param val the new integer value to be written
     * @param txnum the id of the transaction performing the modification
     * @param lsn the LSN of the corresponding log record
+ * @param type 
     */
-   public void setInt(int offset, int val, int txnum, int lsn) {
+   public void setInt(int offset, int val, int txnum, int lsn, String type) {
       modifiedBy = txnum;
       if (lsn >= 0)
 	      logSequenceNumber = lsn;
-      contents.setInt(offset, val);
+      contents.setInt(offset, val , type);
    }
 
    /**
@@ -94,12 +95,13 @@ public class Buffer {
     * @param val the new string value to be written
     * @param txnum the id of the transaction performing the modification
     * @param lsn the LSN of the corresponding log record
+ * @param type 
     */
-   public void setString(int offset, String val, int txnum, int lsn) {
+   public void setString(int offset, String val, int txnum, int lsn, String type) {
       modifiedBy = txnum;
       if (lsn >= 0)
 	      logSequenceNumber = lsn;
-      contents.setString(offset, val);
+      contents.setString(offset, val ,type);
    }
 
    /**

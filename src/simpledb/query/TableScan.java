@@ -76,19 +76,20 @@ public class TableScan implements UpdateScan {
     * otherwise, the setString method is called.
     * @see simpledb.query.UpdateScan#setVal(java.lang.String, simpledb.query.Constant)
     */ 
-   public void setVal(String fldname, Constant val) {
+   public void setVal(String fldname, Constant val , String type) {
+
       if (sch.type(fldname) == INTEGER)
-         rf.setInt(fldname, (Integer)val.asJavaVal());
+         rf.setInt(fldname, (Integer)val.asJavaVal() ,type);
       else
-         rf.setString(fldname, (String)val.asJavaVal());
+         rf.setString(fldname, (String)val.asJavaVal(),type);
    }
    
-   public void setInt(String fldname, int val) {
-      rf.setInt(fldname, val);
+   public void setInt(String fldname, int val ,String type) {
+      rf.setInt(fldname, val ,type);
    }
    
-   public void setString(String fldname, String val) {
-      rf.setString(fldname, val);
+   public void setString(String fldname, String val ,String type) {
+      rf.setString(fldname, val , type);
    }
    
    public void delete() {

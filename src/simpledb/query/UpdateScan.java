@@ -12,21 +12,21 @@ public interface UpdateScan extends Scan {
     * @param fldname the name of the field
     * @param val the new value, expressed as a Constant
     */
-   public void setVal(String fldname, Constant val);
+   public void setVal(String fldname, Constant val ,String type);
    
    /**
     * Modifies the field value of the current record.
     * @param fldname the name of the field
     * @param val the new integer value
     */
-   public void setInt(String fldname, int val);
+   public void setInt(String fldname, int val ,String type);
    
    /**
     * Modifies the field value of the current record.
     * @param fldname the name of the field
     * @param val the new string value
     */
-   public void setString(String fldname, String val);
+   public void setString(String fldname, String val ,String type);
    
    /**
     * Inserts a new record somewhere in the scan.

@@ -139,12 +139,13 @@ public class Transaction {
     * @param blk a reference to the disk block
     * @param offset a byte offset within that block
     * @param val the value to be stored
+ * @param type 
     */
-   public void setInt(Block blk, int offset, int val) {
+   public void setInt(Block blk, int offset, int val, String type) {
       concurMgr.xLock(blk);
       Buffer buff = myBuffers.getBuffer(blk);
       int lsn = recoveryMgr.setInt(buff, offset, val);
-      buff.setInt(offset, val, txnum, lsn);
+      buff.setInt(offset, val, txnum, lsn ,type);
    }
    
    /**
@@ -159,12 +160,13 @@ public class Transaction {
     * @param blk a reference to the disk block
     * @param offset a byte offset within that block
     * @param val the value to be stored
+ * @param type 
     */
-   public void setString(Block blk, int offset, String val) {
+   public void setString(Block blk, int offset, String val, String type) {
       concurMgr.xLock(blk);
       Buffer buff = myBuffers.getBuffer(blk);
       int lsn = recoveryMgr.setString(buff, offset, val);
-      buff.setString(offset, val, txnum, lsn);
+      buff.setString(offset, val, txnum, lsn ,type);
    }
    
    /**

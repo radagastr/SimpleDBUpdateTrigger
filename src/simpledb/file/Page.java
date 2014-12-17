@@ -1,8 +1,10 @@
 package simpledb.file;
 
 import simpledb.server.SimpleDB;
+
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
+import java.util.logging.Logger;
 
 /**
  * The contents of a disk block in memory.
@@ -124,8 +126,18 @@ public class Page {
     * Writes an integer to the specified offset on the page.
     * @param offset the byte offset within the page
     * @param val the integer to be written to the page
+ * @param type 
     */
-   public synchronized void setInt(int offset, int val) {
+   public synchronized void setInt(int offset, int val, String type) {
+	  switch (type) {
+	case "modify":
+		val = Integer.valueOf(String.valueOf(val) + String.valueOf(val));
+		break;
+	case "insert":
+		break;
+	default:
+		break;
+	}
       contents.position(offset);
       contents.putInt(val);
    }
@@ -138,6 +150,7 @@ public class Page {
     * @return the string value at that offset
     */
    public synchronized String getString(int offset) {
+	   
       contents.position(offset);
       int len = contents.getInt();
       byte[] byteval = new byte[len];
@@ -149,8 +162,18 @@ public class Page {
     * Writes a string to the specified offset on the page.
     * @param offset the byte offset within the page
     * @param val the string to be written to the page
+ * @param type 
     */
-   public synchronized void setString(int offset, String val) {
+   public synchronized void setString(int offset, String val, String type) {
+	  switch (type) {
+		case "modify":
+			val = "T_" + val;
+			break;
+		case "insert":
+			break;
+		default:
+			break;
+		}	   
       contents.position(offset);
       byte[] byteval = val.getBytes();
       contents.putInt(byteval.length);
