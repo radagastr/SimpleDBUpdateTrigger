@@ -103,9 +103,9 @@ public class LogMgr implements Iterable<BasicLogRecord> {
     */
    private void appendVal(Object val) {
       if (val instanceof String)
-         mypage.setString(currentpos, (String)val);
+         mypage.setString(currentpos, (String)val,"logappend");
       else
-         mypage.setInt(currentpos, (Integer)val);
+         mypage.setInt(currentpos, (Integer)val,"logappend");
       currentpos += size(val);
    }
 
@@ -157,7 +157,7 @@ public class LogMgr implements Iterable<BasicLogRecord> {
     * is the offset of the integer for the last log record in the page.
     */
    private void finalizeRecord() {
-      mypage.setInt(currentpos, getLastRecordPosition());
+      mypage.setInt(currentpos, getLastRecordPosition(),"logmgr");
       setLastRecordPosition(currentpos);
       currentpos += INT_SIZE;
    }
@@ -167,6 +167,6 @@ public class LogMgr implements Iterable<BasicLogRecord> {
    }
 
    private void setLastRecordPosition(int pos) {
-      mypage.setInt(LAST_POS, pos);
+      mypage.setInt(LAST_POS, pos,"logmgr");
    }
 }

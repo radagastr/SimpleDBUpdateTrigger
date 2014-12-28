@@ -66,19 +66,19 @@ public class SelectScan implements UpdateScan {
    
    // UpdateScan methods
    
-   public void setVal(String fldname, Constant val) {
+   public void setVal(String fldname, Constant val,String type) {
       UpdateScan us = (UpdateScan) s;
-      us.setVal(fldname, val);
+      us.setVal(fldname, val,type);
    }
    
-   public void setInt(String fldname, int val) {
+   public void setInt(String fldname, int val,String type) {
       UpdateScan us = (UpdateScan) s;
-      us.setInt(fldname, val);
+      us.setInt(fldname, val,type);
    }
    
-   public void setString(String fldname, String val) {
+   public void setString(String fldname, String val,String type) {
       UpdateScan us = (UpdateScan) s;
-      us.setString(fldname, val);
+      us.setString(fldname, val,type);
    }
    
    public void delete() {

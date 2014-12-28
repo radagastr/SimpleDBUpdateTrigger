@@ -147,7 +147,7 @@ public class SortPlan implements Plan {
    private boolean copy(Scan src, UpdateScan dest) {
       dest.insert();
       for (String fldname : sch.fields())
-         dest.setVal(fldname, src.getVal(fldname));
+         dest.setVal(fldname, src.getVal(fldname),"sortplan");
       return src.next();
    }
 }

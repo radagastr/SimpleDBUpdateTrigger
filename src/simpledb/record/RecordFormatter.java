@@ -33,7 +33,7 @@ class RecordFormatter implements PageFormatter {
    public void format(Page page) {
       int recsize = ti.recordLength() + INT_SIZE;
       for (int pos=0; pos+recsize<=BLOCK_SIZE; pos += recsize) {
-         page.setInt(pos, EMPTY);
+         page.setInt(pos, EMPTY,"recordformat");
          makeDefaultRecord(page, pos);
       }
    }
@@ -42,9 +42,9 @@ class RecordFormatter implements PageFormatter {
       for (String fldname : ti.schema().fields()) {
          int offset = ti.offset(fldname);
          if (ti.schema().type(fldname) == INTEGER)
-            page.setInt(pos + INT_SIZE + offset, 0);
+            page.setInt(pos + INT_SIZE + offset, 0,"recordformat");
          else
-            page.setString(pos + INT_SIZE + offset, "");
+            page.setString(pos + INT_SIZE + offset, "","recordformat");
       }
    }
 }

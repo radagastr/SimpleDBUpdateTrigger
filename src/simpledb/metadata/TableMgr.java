@@ -60,19 +60,19 @@ public class TableMgr {
       // insert one record into tblcat
       RecordFile tcatfile = new RecordFile(tcatInfo, tx);
       tcatfile.insert();
-      tcatfile.setString("tblname", tblname);
-      tcatfile.setInt("reclength", ti.recordLength());
+      tcatfile.setString("tblname", tblname,"tablemgr");
+      tcatfile.setInt("reclength", ti.recordLength(),"tablemgr");
       tcatfile.close();
       
       // insert a record into fldcat for each field
       RecordFile fcatfile = new RecordFile(fcatInfo, tx);
       for (String fldname : sch.fields()) {
          fcatfile.insert();
-         fcatfile.setString("tblname", tblname);
-         fcatfile.setString("fldname", fldname);
-         fcatfile.setInt   ("type",   sch.type(fldname));
-         fcatfile.setInt   ("length", sch.length(fldname));
-         fcatfile.setInt   ("offset", ti.offset(fldname));
+         fcatfile.setString("tblname", tblname,"tablemgr");
+         fcatfile.setString("fldname", fldname,"tablemgr");
+         fcatfile.setInt   ("type",   sch.type(fldname),"tablemgr");
+         fcatfile.setInt   ("length", sch.length(fldname),"tablemgr");
+         fcatfile.setInt   ("offset", ti.offset(fldname),"tablemgr");
       }
       fcatfile.close();
    }

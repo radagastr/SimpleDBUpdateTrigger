@@ -36,8 +36,8 @@ public class BTPageFormatter implements PageFormatter {
     * @see simpledb.buffer.PageFormatter#format(simpledb.file.Page)
     */
    public void format(Page page) {
-      page.setInt(0, flag);
-      page.setInt(INT_SIZE, 0);  // #records = 0
+      page.setInt(0, flag , "btpage");
+      page.setInt(INT_SIZE, 0, "btpage");  // #records = 0
       int recsize = ti.recordLength();
       for (int pos=2*INT_SIZE; pos+recsize<=BLOCK_SIZE; pos += recsize)
          makeDefaultRecord(page, pos);
@@ -47,9 +47,9 @@ public class BTPageFormatter implements PageFormatter {
       for (String fldname : ti.schema().fields()) {
          int offset = ti.offset(fldname);
          if (ti.schema().type(fldname) == INTEGER)
-            page.setInt(pos + offset, 0);
+            page.setInt(pos + offset, 0, "btpage");
          else
-            page.setString(pos + offset, "");
+            page.setString(pos + offset, "", "btpage");
       }
    }
 }

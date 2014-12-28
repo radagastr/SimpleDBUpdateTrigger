@@ -21,8 +21,8 @@ class ViewMgr {
       TableInfo ti = tblMgr.getTableInfo("viewcat", tx);
       RecordFile rf = new RecordFile(ti, tx);
       rf.insert();
-      rf.setString("viewname", vname);
-      rf.setString("viewdef", vdef);
+      rf.setString("viewname", vname,"viewmgr");
+      rf.setString("viewdef", vdef,"viewmgr");
       rf.close();
    }
    

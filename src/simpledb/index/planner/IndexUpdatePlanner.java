@@ -35,7 +35,7 @@ public class IndexUpdatePlanner implements UpdatePlanner {
       for (String fldname : data.fields()) {
          Constant val = valIter.next();
          System.out.println("Modify field " + fldname + " to val " + val);
-         s.setVal(fldname, val);
+         s.setVal(fldname, val,"insert");
          
          IndexInfo ii = indexes.get(fldname);
          if (ii != null) {
@@ -88,7 +88,7 @@ public class IndexUpdatePlanner implements UpdatePlanner {
          // first, update the record
          Constant newval = data.newValue().evaluate(s);
          Constant oldval = s.getVal(fldname);
-         s.setVal(data.targetField(), newval);
+         s.setVal(data.targetField(), newval,"modify");
          
          // then update the appropriate index, if it exists
          if (idx != null) {

@@ -43,9 +43,9 @@ public class IndexMgr {
    public void createIndex(String idxname, String tblname, String fldname, Transaction tx) {
       RecordFile rf = new RecordFile(ti, tx);
       rf.insert();
-      rf.setString("indexname", idxname);
-      rf.setString("tablename", tblname);
-      rf.setString("fieldname", fldname);
+      rf.setString("indexname", idxname,"indexmgr");
+      rf.setString("tablename", tblname,"indexmgr");
+      rf.setString("fieldname", fldname,"indexmgr");
       rf.close();
    }
    

@@ -37,7 +37,7 @@ public class MaterializePlan implements Plan {
       while (src.next()) {
          dest.insert();
          for (String fldname : sch.fields())
-            dest.setVal(fldname, src.getVal(fldname));
+            dest.setVal(fldname, src.getVal(fldname),"materialize");
       }
       src.close();
       dest.beforeFirst();

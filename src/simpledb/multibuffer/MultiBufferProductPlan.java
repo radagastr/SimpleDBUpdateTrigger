@@ -107,7 +107,7 @@ public class MultiBufferProductPlan implements Plan {
       while (src.next()) {
          dest.insert();
          for (String fldname : sch.fields())
-            dest.setVal(fldname, src.getVal(fldname));
+            dest.setVal(fldname, src.getVal(fldname),"productplan");
       }
       src.close();
       dest.close();

@@ -73,7 +73,7 @@ class SetStringRecord implements LogRecord {
    public void undo(int txnum) {
       BufferMgr buffMgr = SimpleDB.bufferMgr();
       Buffer buff = buffMgr.pin(blk);
-      buff.setString(offset, val, txnum, -1);
+      buff.setString(offset, val, txnum, -1,"undo");
       buffMgr.unpin(buff);
    }
 }

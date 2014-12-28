@@ -104,7 +104,7 @@ public class BTreePage {
     * @param val the new value of the page flag
     */
    public void setFlag(int val) {
-      tx.setInt(currentblk, 0, val);
+      tx.setInt(currentblk, 0, val, "btreepage");
    }
    
    /**
@@ -206,12 +206,12 @@ public class BTreePage {
    
    private void setInt(int slot, String fldname, int val) {
       int pos = fldpos(slot, fldname);
-      tx.setInt(currentblk, pos, val);
+      tx.setInt(currentblk, pos, val, "btreepage");
    }
    
    private void setString(int slot, String fldname, String val) {
       int pos = fldpos(slot, fldname);
-      tx.setString(currentblk, pos, val);
+      tx.setString(currentblk, pos, val, "btreepage");
    }
    
    private void setVal(int slot, String fldname, Constant val) {
@@ -223,7 +223,7 @@ public class BTreePage {
    }
    
    private void setNumRecs(int n) {
-      tx.setInt(currentblk, INT_SIZE, n);
+      tx.setInt(currentblk, INT_SIZE, n, "btreepage");
    }
    
    private void insert(int slot) {
